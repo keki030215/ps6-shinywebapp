@@ -3,7 +3,6 @@ library(tidyverse)
 library(ggplot2)
 library(plotly)
 
-setwd("~/Documents/info201wi23/assignments/ps6-shinywebapp/ps6-shinyweb/")
 uah <- read_delim("UAH-lower-troposphere-long.csv.bz2")
 
 ui <- fluidPage(

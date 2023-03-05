@@ -20,7 +20,10 @@ server <- function(input, output) {
   p <- ggplot(uah_plot, aes(time, temp, col = region)) +
               geom_point(size = 0.5) +
               labs(x = "Year", y = "Temperature", col = "Region") +
-              xlim(input$year_range[1], input$year_range[2])
+              xlim(input$year_range[1], input$year_range[2]) +
+    if (input$color_palette == "Palette 2"){
+      scale_color_brewer(palette = "Dark2")
+    }
   ggplotly(p, height = 500, width = 700)
   })
   output$plot_text1 <- renderText({
@@ -28,7 +31,9 @@ server <- function(input, output) {
         "to", input$year_range[2])
   })
   output$plot_text2 <- renderText({
-    paste("You have selected", input$select_region)
+    uah_plot_text <- uah %>% 
+      filter(region %in% input$select_region)
+    paste("There is", nrow(uah_plot_text), "observarions.\n")
   })
   output$table <-renderDataTable({
     var <- input$variable

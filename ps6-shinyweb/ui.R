@@ -29,6 +29,9 @@ ui <- fluidPage(
         tabPanel("Plot",
                  sidebarLayout(
                    sidebarPanel(
+                     radioButtons("color_palette",
+                                  "Select the color palette for the graph:",
+                                  c("Palette 1", "Palette 2"), "Palette 1"),
                      sliderInput(
                        "year_range", "Select the range of year",
                        min(uah$year), max(uah$year), 
